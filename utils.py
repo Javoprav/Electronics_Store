@@ -1,3 +1,6 @@
+import csv
+
+
 class Item:
     """Класс товаров"""
     pay_rate = 0.85
@@ -5,10 +8,10 @@ class Item:
 
     def __init__(self, name, price, quantity):
         """Инициализация"""
-        self.name = name
+        self.__name = name
         self.price = price
         self.quantity = quantity
-        Item.all.append(self)
+        #Item.all.append(self)
 
     def calculate_total_price(self):
         """Получит общую стоимость конкретного товара в магазине"""
@@ -18,3 +21,32 @@ class Item:
         """Применить установленную скидку для конкретного товара"""
         new_price = self.price * self.pay_rate
         self.price = new_price
+
+    @property
+    def name(self):
+        if len(self.__name) < 10:
+            return self.__name
+        else:
+            return 'Exception: Длина наименования товара превышает 10 символов.'
+
+    @name.setter
+    def name(self, value: str) -> None:
+        """Устанавливает название"""
+        self.__name = value
+
+    @staticmethod
+    def is_integer(num) -> bool:
+        """Проверка на целое число"""
+        if num % 2 == 0 or (num + 1) % 2 == 0:
+            return True
+        return False
+
+    @classmethod
+    def instantiate_from_csv(cls):
+        """Загрузка экземпляров из csv"""
+        with open('items.csv', 'r') as File:
+            reader = csv.DictReader(File)
+            for line in reader:
+                item = cls(line['name'], int(line['price']), int(line['quantity']))
+                Item.all.append(item)
+
