@@ -1,4 +1,3 @@
-import csv
 from utils import *
 
 if __name__ == "__main__":
@@ -17,7 +16,7 @@ if __name__ == "__main__":
     item_3.pay_rate = 0.7
     item_3.apply_discount()
     print(item_3.price)
-    #print(item2.__name)
+    # print(item2.__name)
 
     item = Item('Телефон', 10000, 5)
     item.name = 'Смартфон'

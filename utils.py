@@ -24,6 +24,7 @@ class Item:
 
     @property
     def name(self):
+        """Проверка на длину названия"""
         if len(self.__name) < 10:
             return self.__name
         else:
@@ -33,6 +34,10 @@ class Item:
     def name(self, value: str) -> None:
         """Устанавливает название"""
         self.__name = value
+
+    '''@name.getter
+    def name(self):
+        return self.name'''
 
     @staticmethod
     def is_integer(num) -> bool:
