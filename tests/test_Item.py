@@ -16,10 +16,15 @@ def test_apply_discount():
 def test_name():
     item_5 = Item('Samsung', 100, 10)
     item_5.name = 'sams'
+    assert item_5.name == 'sams'
     assert print(item_5.name) is None
-
-    '''item_5.name = 'SamsungSamsung'
-    assert print(item_5.name) == "SamsungSamsung"
     item_5.name = 'SamsungSamsung'
-    assert print(item_5.name) == "Exception: Длина наименования товара превышает 10 символов."'''
+    assert item_5.name == 'Exception: Длина наименования товара превышает 10 символов.'
 
+def test_is_integer():
+    assert Item.is_integer(5) is True
+    assert Item.is_integer(5.5) is False
+
+
+def test_instantiate_from_csv():
+    assert print(Item.instantiate_from_csv()) == None
