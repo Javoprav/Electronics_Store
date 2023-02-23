@@ -2,6 +2,7 @@ from utils import *
 
 
 def test_calculate_total_price():
+
     item_3 = Item('Samsung', 3, 10)
     assert item_3.calculate_total_price() == 30
 
@@ -27,4 +28,5 @@ def test_is_integer():
 
 
 def test_instantiate_from_csv():
-    assert print(Item.instantiate_from_csv()) == None
+    item_6 = Item('Samsung', 100, 10)
+    assert print(item_6.instantiate_from_csv()) is None
