@@ -54,4 +54,9 @@ class Item:
             for line in reader:
                 item = cls(line['name'], int(line['price']), int(line['quantity']))
                 Item.all.append(item)
+    
+    def __repr__(self):
+      return f'{self.__class__.__name__}({self.__name}, {self.price}, {self.quantity}'
 
+    def __str__(self):
+      return f'{self.__name}'
