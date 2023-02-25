@@ -38,7 +38,7 @@ if __name__ == "__main__":
     # True
     # False
     item1 = Item("Смартфон", 10000, 20)
-    print(item1.__repr__)
+    print(item1.__repr__())
     # Item('Смартфон', 10000, 20)
     print(item1)
     # Смартфон

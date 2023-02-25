@@ -22,6 +22,7 @@ def test_name():
     item_5.name = 'SamsungSamsung'
     assert item_5.name == 'Exception: Длина наименования товара превышает 10 символов.'
 
+
 def test_is_integer():
     assert Item.is_integer(5) is True
     assert Item.is_integer(5.5) is False
@@ -30,3 +31,13 @@ def test_is_integer():
 def test_instantiate_from_csv():
     item_6 = Item('Samsung', 100, 10)
     assert print(item_6.instantiate_from_csv()) is None
+
+
+def test___repr__():
+    item_7 = Item('Samsung', 100, 10)
+    assert item_7.__repr__() == 'Item(Samsung, 100, 10)'
+
+
+def test___str__():
+    item_8 = Item('Samsung', 100, 10)
+    assert item_8.__str__() == 'Samsung'
