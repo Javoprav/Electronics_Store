@@ -35,10 +35,6 @@ class Item:
         """Устанавливает название"""
         self.__name = value
 
-    '''@name.getter
-    def name(self):
-        return self.name'''
-
     @staticmethod
     def is_integer(num) -> bool:
         """Проверка на целое число"""
@@ -60,3 +56,32 @@ class Item:
 
     def __str__(self):
         return f'{self.__name}'
+
+
+class Phone(Item):
+    """Класс телефоны"""
+    def __init__(self, name, price, quantity, number_of_sim):
+        """Инициализация"""
+        super().__init__(name, price, quantity)
+        self.__number_of_sim = number_of_sim
+
+    def __add__(self, other):
+        """Сложение экземпляров по кол-ву"""
+        if isinstance(other, Item):
+            return self.quantity + self.quantity
+        else:
+            raise ValueError('Только объекты Item')
+
+    @property
+    def number_of_sim(self):
+        """Возврат кол-ва сим-карт"""
+        if self.__number_of_sim > 0 and self.__number_of_sim == int(self.__number_of_sim):
+            return self.__number_of_sim
+        else:
+            raise ValueError('Количество физических SIM-карт должно быть целым числом больше нуля.')
+
+    @number_of_sim.setter
+    def number_of_sim(self, value):
+        """Назначение кол-ва сим-карт"""
+        self.__number_of_sim = value
+
