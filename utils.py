@@ -68,7 +68,7 @@ class Phone(Item):
     def __add__(self, other):
         """Сложение экземпляров по кол-ву"""
         if isinstance(other, Item):
-            return self.quantity + self.quantity
+            return self.quantity + other.quantity
         else:
             raise ValueError('Только объекты Item')
 

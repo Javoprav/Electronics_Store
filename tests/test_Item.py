@@ -41,3 +41,16 @@ def test___repr__():
 def test___str__():
     item_8 = Item('Samsung', 100, 10)
     assert item_8.__str__() == 'Samsung'
+
+
+def test___add__():
+    phone4 = Phone("iPhone 14", 120_000, 5, 2)
+    phone5 = Phone("iPhone 14", 120_000, 9, 2)
+    assert phone4 + phone5 == 14
+    # assert phone4 + 5 is ValueError('Только объекты Item')
+
+
+def test_number_of_sim():
+    phone6 = Phone("iPhone 14", 120_000, 9, 2)
+    phone6.number_of_sim = 6
+    assert phone6.number_of_sim == 6

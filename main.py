@@ -45,6 +45,8 @@ if __name__ == "__main__":
 
     # смартфон iPhone 14, цена 120_000, количетсво товара 5, симкарт 2
     phone1 = Phone("iPhone 14", 120_000, 5, 2)
+    phone2 = Phone("iPhone 14", 120_000, 9, 2)
+    print(phone1 + phone2)
     print(phone1)
     # iPhone 14
     print(repr(phone1))
