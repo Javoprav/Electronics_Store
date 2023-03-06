@@ -60,6 +60,7 @@ class Item:
 
 class Phone(Item):
     """Класс телефоны"""
+
     def __init__(self, name, price, quantity, number_of_sim):
         """Инициализация"""
         super().__init__(name, price, quantity)
@@ -85,3 +86,25 @@ class Phone(Item):
         """Назначение кол-ва сим-карт"""
         self.__number_of_sim = value
 
+
+class Mixinlog(Item):
+    def __init__(self, name, price, quantity, language='EN'):
+        super().__init__(name, price, quantity)
+        self.__language = language
+
+    @property
+    def language(self):
+        return self.__language
+
+    @language.getter
+    def language(self):
+        return self.__language
+
+    @property
+    def change_lang(self):
+        self.__language = 'RU'
+
+
+class Keyboard(Mixinlog):
+    def __init__(self, name, price, quantity, language='EN'):
+        super().__init__(name, price, quantity, language)

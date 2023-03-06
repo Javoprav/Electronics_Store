@@ -54,5 +54,20 @@ if __name__ == "__main__":
     phone1.number_of_sim = 5
     print(phone1.number_of_sim)
     phone1.number_of_sim = 0
-    print(phone1.number_of_sim)
+    # print(phone1.number_of_sim)
     # ValueError: Количество физических SIM-карт должно быть целым числом больше нуля.
+
+    kb = Keyboard('Dark Project KD87A', 9600, 5)
+    print(kb)
+    # Dark Project KD87A
+
+    print(kb.language)
+    # EN
+
+    kb.change_lang
+    print(kb.language)
+    # RU
+
+    kb.language = 'CH'
+    print(kb.language)
+    # AttributeError: property 'language' of 'KeyBoard' object has no setter
