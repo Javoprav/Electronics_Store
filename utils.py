@@ -87,10 +87,16 @@ class Phone(Item):
         self.__number_of_sim = value
 
 
-class Mixinlog(Item):
+'''class Mixinlog(Item):
     def __init__(self, name, price, quantity, language='EN'):
         super().__init__(name, price, quantity)
-        self.__language = language
+        self.__language = language'''
+
+
+class Mixinlog:
+
+    def __init__(self):
+        self.__language = "EN"
 
     @property
     def language(self):
@@ -105,6 +111,13 @@ class Mixinlog(Item):
         self.__language = 'RU'
 
 
-class Keyboard(Mixinlog):
+"""class Keyboard(Mixinlog):
     def __init__(self, name, price, quantity, language='EN'):
-        super().__init__(name, price, quantity, language)
+        super().__init__(name, price, quantity, language)"""
+
+
+class KeyBoard(Item, Mixinlog):
+
+    def __init__(self, name, price, quantity):
+        super().__init__(name, price, quantity)
+        Mixinlog.__init__(self)

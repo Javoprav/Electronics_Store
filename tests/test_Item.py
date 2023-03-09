@@ -30,8 +30,8 @@ def test_is_integer():
 
 
 def test_instantiate_from_csv():
-    item_6 = Item('Samsung', 100, 10)
-    assert print(item_6.instantiate_from_csv()) is None
+    Item.instantiate_from_csv()
+    assert len(Item.all) == 5
 
 
 def test___repr__():
@@ -60,7 +60,7 @@ def test_number_of_sim():
 
 
 def test_language():
-    kb1 = Keyboard('Dark Project KD87A', 9600, 5)
+    kb1 = KeyBoard('Dark Project KD87A', 9600, 5)
     assert kb1.language == 'EN'
     kb1.change_lang
     assert kb1.language == 'RU'
