@@ -30,7 +30,10 @@ def test_is_integer():
 
 
 def test_instantiate_from_csv():
-    Item.instantiate_from_csv()
+    assert Item.instantiate_from_csv() == 'FileNotFoundError: Отсутствует файл items.csv'
+    assert len(Item.all) == 0
+    assert Item.instantiate_from_csv('dir/items.csv') == 'InstantiateCSVError: Файл items.csv поврежден'
+    Item.instantiate_from_csv('items.csv')
     assert len(Item.all) == 5
 
 
@@ -64,3 +67,4 @@ def test_language():
     assert kb1.language == 'EN'
     kb1.change_lang
     assert kb1.language == 'RU'
+

@@ -43,13 +43,21 @@ class Item:
         return False
 
     @classmethod
-    def instantiate_from_csv(cls):
+    def instantiate_from_csv(cls, *args):
         """Загрузка экземпляров из csv"""
-        with open('items.csv', 'r') as File:
-            reader = csv.DictReader(File)
-            for line in reader:
-                item = cls(line['name'], int(line['price']), int(line['quantity']))
-                Item.all.append(item)
+        try:
+            with open(*args, 'r') as File:
+                reader = csv.DictReader(File)
+                for line in reader:
+                    if 'name' and 'price' and 'quantity' not in line:
+                        raise InstantiateCSVError
+                    else:
+                        item = cls(line['name'], int(line['price']), int(line['quantity']))
+                        Item.all.append(item)
+        except FileNotFoundError:
+            return 'FileNotFoundError: Отсутствует файл items.csv'
+        except InstantiateCSVError:
+            return 'InstantiateCSVError: Файл items.csv поврежден'
 
     def __repr__(self):
         return f'{self.__class__.__name__}({self.__name}, {self.price}, {self.quantity})'
@@ -87,12 +95,6 @@ class Phone(Item):
         self.__number_of_sim = value
 
 
-'''class Mixinlog(Item):
-    def __init__(self, name, price, quantity, language='EN'):
-        super().__init__(name, price, quantity)
-        self.__language = language'''
-
-
 class Mixinlog:
 
     def __init__(self):
@@ -111,13 +113,16 @@ class Mixinlog:
         self.__language = 'RU'
 
 
-"""class Keyboard(Mixinlog):
-    def __init__(self, name, price, quantity, language='EN'):
-        super().__init__(name, price, quantity, language)"""
-
-
 class KeyBoard(Item, Mixinlog):
 
     def __init__(self, name, price, quantity):
         super().__init__(name, price, quantity)
         Mixinlog.__init__(self)
+
+
+class InstantiateCSVError(BaseException):
+    def __init__(self):
+        self.message = 'FileNotFoundError: Отсутствует файл items.csv'
+
+    def __str__(self):
+        return self.message
